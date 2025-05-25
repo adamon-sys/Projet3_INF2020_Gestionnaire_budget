@@ -1,0 +1,31 @@
+name: Deploy FastAPI Docker app to Azure Web App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Build and push Docker image to Azure Container Registry (optional)
+      run: |
+        echo "Building image..."
+        docker build -t ${{ secrets.AZURE_WEBAPP_NAME }}:latest .
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
+        slot-name: production
+        images: ${{ secrets.AZURE_WEBAPP_NAME }}:latest
