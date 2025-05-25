@@ -1,0 +1,32 @@
+# docker run -d -p 8000:8000 gestion-budget-app
+
+
+#Supprime tous les conteneurs actifs (au besoin)
+# docker rm -f $(docker ps -q)
+
+#Rebuild l’image
+#docker build -t gestion-budget-app .
+
+# Lance l’application en arrière-plan
+# docker run -d -p 8000:8000 gestion-budget-app 
+
+# Affiche les logs du conteneur
+# docker logs -f $(docker ps -q) 
+
+# Supprime l’image
+# docker rmi gestion-budget-app 
+
+# Supprime tous les conteneurs actifs
+# docker rm -f $(docker ps -aq)
+
+# Supprime toutes les images
+# docker rmi $(docker images -q)
+
+# Supprime tous les volumes
+# docker volume rm $(docker volume ls -q)
+
+# Supprime tous les réseaux
+# docker network rm $(docker network ls -q)
+
+# Supprime tous les conteneurs, images, volumes et réseaux
+# docker system prune -a --volumes      
