@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: gestion-budget-app:latest
+        tags: docker.io/adamon-sys/gestion-budget-app:latest
         file: ./Dockerfile
 
   deploy:
@@ -48,7 +48,8 @@ jobs:
         app-name: 'gestion-budget-app'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_f05d3c3f88fc4410a580d4c43b25319e }}
-        images: 'gestion-budget-app:latest'
+        images: 'docker.io/adamon-sys/gestion-budget-app:latest'
+
 
 
 
