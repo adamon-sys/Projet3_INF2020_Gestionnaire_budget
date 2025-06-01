@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_2fe2deaaaa3b42d0afb71993f077a5d5 }}/appsvc/staticsite:${{ github.sha }}
+        tags: gestion-budget-app:latest
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,7 @@ jobs:
         app-name: 'gestion-budget-app'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_f05d3c3f88fc4410a580d4c43b25319e }}
-        images: 'mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_2fe2deaaaa3b42d0afb71993f077a5d5 }}/appsvc/staticsite:${{ github.sha }}'
+        images: 'gestion-budget-app:latest'
+
+
+
