@@ -27,21 +27,20 @@ jobs:
         file: ./Dockerfile
 
   deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+   runs-on: ubuntu-latest
+   needs: build
+   environment:
+    name: 'production'
+    url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
-    steps:
-    - name: Deploy to Azure Web App
-      id: deploy-to-webapp
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'gestion-budget-app'
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_f05d3c3f88fc4410a580d4c43b25319e }}
-        images: 'docker.io/adamon-sys/gestion-budget-app:latest'
+   steps:
+   - name: Deploy to Azure Web App
+     id: deploy-to-webapp
+     uses: azure/webapps-deploy@v2
+     with:
+      app-name: 'gestion-budget-app'
+      publish-profile: ${{ secrets.AzureAppService_PublishProfile_f05d3c3f88fc4410a580d4c43b25319e }}
+      images: 'docker.io/adamon-sys/gestion-budget-app:latest'
 
 
 
